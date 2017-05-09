@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcrisan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dsoporan <dsoporan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/23 16:42:40 by rcrisan           #+#    #+#             */
-/*   Updated: 2015/11/09 19:51:40 by rcrisan          ###   ########.fr       */
+/*   Created: 2017/01/12 17:35:15 by dsoporan          #+#    #+#             */
+/*   Updated: 2017/01/12 17:35:16 by dsoporan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char	*c1;
-	unsigned char	*c2;
 	size_t			i;
+	unsigned char	*s3;
+	unsigned char	*s4;
 
-	c1 = (unsigned char*)s1;
-	c2 = (unsigned char*)s2;
 	i = 0;
-	while ((c1[i] || c2[i]) && i < n)
+	s3 = (unsigned char *)s1;
+	s4 = (unsigned char *)s2;
+	while ((s3[i] || s4[i]) && n > 0)
 	{
-		if (c1[i] != c2[i])
-			return (c1[i] - c2[i]);
+		if (s3[i] > s4[i] || s3[i] < s4[i])
+			return (s3[i] - s4[i]);
 		i++;
+		n--;
 	}
 	return (0);
 }

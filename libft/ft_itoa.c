@@ -3,51 +3,93 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcrisan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dsoporan <dsoporan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/12 12:47:17 by rcrisan           #+#    #+#             */
-/*   Updated: 2016/01/22 16:26:39 by rcrisan          ###   ########.fr       */
+/*   Created: 2017/01/12 17:12:34 by dsoporan          #+#    #+#             */
+/*   Updated: 2017/01/12 17:12:35 by dsoporan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*n_is_zero(char *str)
+char	*ft_null(char *f)
 {
-	str[0] = '0';
-	str[1] = '\0';
-	return (str);
+	f[0] = '0';
+	f[1] = '\0';
+	return (f);
 }
 
-static void		smaller_than_zero(char *str, int n, int *i)
+char	*ft_pos(int n, char *f, int i)
 {
-	if (n < 0)
+	while (n > 0)
 	{
-		str[0] = '-';
-		*i = *i + 1;
+		f[i] = (n % 10) + '0';
+		n /= 10;
+		i++;
 	}
+	f[i] = '\0';
+	return (f);
 }
 
-char			*ft_itoa(int n)
+char	*ft_revstr(char *f, char *j, int k)
+{
+	char	l;
+	int		i;
+
+	i = ft_strlen(f) - 1;
+	while (i >= 0 && f[i] != '-')
+	{
+		l = f[i];
+		f[i] = j[k];
+		j[k] = l;
+		i--;
+		k++;
+	}
+	j[k] = '\0';
+	return (j);
+}
+
+int		ft_cifre(int i)
+{
+	int	n;
+
+	n = 0;
+	if (i < 0)
+		n++;
+	if (i == 0)
+		return (1);
+	while (i)
+	{
+		i /= 10;
+		n++;
+	}
+	return (n);
+}
+
+char	*ft_itoa(int n)
 {
 	int		i;
-	char	*s;
+	int		k;
+	char	*f;
+	char	*j;
 
-	i = ft_nr_cifre(n);
-	s = (char*)malloc(sizeof(s) * i + 2);
+	i = 0;
+	k = 0;
+	f = malloc(sizeof(char) * ft_cifre(n) + 1);
+	j = malloc(sizeof(char) * ft_cifre(n) + 1);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (!f || !j)
+		return (0);
 	if (n == 0)
-		return (n_is_zero(s));
-	else if (n < 0)
-		smaller_than_zero(s, n, &i);
-	s[i--] = '\0';
-	while (n)
+		return (ft_null(f));
+	if (n < 0)
 	{
-		if (n % 10 < 0)
-			s[i] = -(n % 10) + '0';
-		else
-			s[i] = n % 10 + '0';
-		n = n / 10;
-		i--;
+		n = -n;
+		j[k] = '-';
+		k++;
 	}
-	return (s);
+	if (n > 0)
+		f = ft_pos(n, f, i);
+	return (ft_revstr(f, j, k));
 }

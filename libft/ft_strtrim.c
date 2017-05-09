@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcrisan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dsoporan <dsoporan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/02 13:43:44 by rcrisan           #+#    #+#             */
-/*   Updated: 2015/11/14 11:49:50 by rcrisan          ###   ########.fr       */
+/*   Created: 2017/01/12 17:37:17 by dsoporan          #+#    #+#             */
+/*   Updated: 2017/01/12 17:37:19 by dsoporan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,25 @@
 
 char	*ft_strtrim(char const *s)
 {
+	int		len;
+	char	*d;
 	int		i;
 	int		j;
-	int		k;
-	char	*str;
 
+	len = (int)(ft_strlen(s) - 1);
 	i = 0;
-	k = 0;
-	if (s == NULL)
-		return (NULL);
-	str = (char*)malloc(sizeof(s) * (ft_strlen(s)));
-	if (str == NULL)
-		return (NULL);
-	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
+	j = 0;
+	while (s[i] == '\n' || s[i] == '\t' || s[i] == 32)
 		i++;
-	j = ft_strlen(s);
-	while (s[j - 1] == ' ' || s[j - 1] == '\t' || s[j - 1] == '\n')
-		j--;
-	while (i < j)
+	d = (char *)malloc(sizeof(char) * (len - i + 1));
+	while (s[len] == '\n' || s[len] == '\t' || s[len] == 32)
+		len--;
+	while (i <= len)
 	{
-		str[k] = s[i];
-		k++;
+		d[j] = s[i];
 		i++;
+		j++;
 	}
-	str[k] = '\0';
-	return (str);
+	d[j] = '\0';
+	return (d);
 }

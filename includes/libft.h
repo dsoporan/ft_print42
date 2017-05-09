@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcrisan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dsoporan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/03 16:52:40 by rcrisan           #+#    #+#             */
-/*   Updated: 2016/01/22 16:22:43 by rcrisan          ###   ########.fr       */
+/*   Created: 2017/05/09 16:20:23 by dsoporan          #+#    #+#             */
+/*   Updated: 2017/05/09 16:21:57 by dsoporan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-int					ft_nr_cifre(int n);
 char				*ft_itoa(int n);
 char				*ft_litoa(long int n);
 char				*ft_itoa_base(int n, int base);
@@ -85,14 +84,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-int					ft_isspace(char *str);
-int					ft_isprime(int n);
-int					ft_count_words(char *str);
-char				*ft_ulstr(char *str);
-char				*ft_space_remove(char *str);
-int					ft_sqrt(int n);
 char				*ft_strrev(char *str);
-int					ft_neg(int n);
 wchar_t				*ft_wstrjoin(wchar_t const *s1, wchar_t const *s2);
 wchar_t				*ft_wstrdup(const wchar_t *s1);
 int					ft_wstrlen(const wchar_t *s);
